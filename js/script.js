@@ -106,7 +106,7 @@ function loadFileFromHash(hash) {
 
 	httpGetAsync(requestURL, function(resultFile, statusCode) {
 		if (statusCode != 200) {
-			return alert("The file " + currentFileName + " could not be found at this hash in " + currentRepoAddress)
+			return alert("The file " + currentFileName + " could not be found at hash " + hash + " in " + currentRepoAddress)
 		}
 		
 		document.getElementById('fileOutput').innerHTML = Prism.highlight(resultFile, Prism.languages.html).replace(/\n/g, "<br/>").replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;");
