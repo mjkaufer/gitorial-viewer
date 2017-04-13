@@ -1,0 +1,26 @@
+.center-text {
+	text-align: center;
+}
+
+#fileOutput {
+	border: solid grey 1px;
+	border-radius: .5em;
+}
+
+.columns {
+	overflow-x: scroll;
+}
+
+td {
+	padding-right: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+table {
+	margin-top: 1.5em;
+}
+
+a {
+	cursor: pointer;
+}

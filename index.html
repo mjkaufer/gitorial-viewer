@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="skeleton.css">
+		<link rel="stylesheet" type="text/css" href="normalize.css">
+		<link rel="stylesheet" type="text/css" href="prism.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<title>Gitorial Viewer</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<h1 class="center-text">Gitorial Viewer</h1>	
+			</div>
+
+			<div class="row">
+				<div class="four columns">
+					<label for="url">GitHub Address</label>
+				</div>
+				<div class="four columns">
+					<label for="fileName">File Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="four columns">
+					<input class="u-full-width" type="text" placeholder="Address of GitHub Repo, e.g. mjkaufer/gitorial-viewer" id="address">
+				</div>
+				<div class="four columns">
+					<input class="u-full-width" type="text" placeholder="File Name to View" id="fileName" value="index.html">
+				</div>
+				<div class="four columns">
+					<button class="button-primary" id="showGitorial">Show Me My Gitorial</button>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="six columns alpha">
+					<table class="u-max-full-width" id="commitTable">
+						<thead>
+							<tr>
+								<!-- <th>Commit #</th> -->
+								<th>Commit Hash</th>
+								<th>Commit Description</th>
+							</tr>
+						</thead>
+						<tbody id="commitsBody">
+							<tr>
+								<!-- <td>-1</td> -->
+								<td>Nothing Here</td>
+								<td>:(</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<br/>
+				<div class="six columns u-full-width omega" id="fileOutput">
+					<p>Nothing here either</p>
+				</div>
+			</div>
+		</div>
+		<script src="prism.js"></script>
+		<script src="script.js"></script>
+
+	</body>
+</html>
