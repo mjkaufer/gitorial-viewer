@@ -13,8 +13,8 @@ function getParameterByName(name, url) {
 function httpGetAsync(theUrl, callback) {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
-		if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-			callback(xmlHttp.responseText);
+		if (xmlHttp.readyState == 4)
+			callback(xmlHttp.responseText, xmlHttp.status);
 	}
 	xmlHttp.open("GET", theUrl, true);
 	xmlHttp.send(null);
@@ -47,7 +47,10 @@ showGitorialButton.onclick = function() {
 }
 
 //this is only really gonna work for the last 30 commits...
-function loadCommits(commitsJSONString) {
+function loadCommits(commitsJSONString, status) {
+	if (status != 200) {
+		return alert("Failed to load commits for " + currentRepoAddress);
+	}
 	// console.log(typeof commitsJSON)
 	var commitsJSON = JSON.parse(commitsJSONString);
 	console.log(commitsJSON);
@@ -92,15 +95,19 @@ function loadCommits(commitsJSONString) {
 }
 
 function loadFileFromHash(hash) {
-	if (currentFileName.substr(0, 1) != "/") {
-		currentFileName = "/" + currentFileName;
+	var modifiedFileName = currentFileName;
+
+	if (modifiedFileName.substr(0, 1) != "/") {
+		modifiedFileName = "/" + modifiedFileName;
 	}
 
-	var requestURL = "https://raw.githubusercontent.com/" + currentRepoAddress +  "/" + hash + currentFileName;
+	var requestURL = "https://raw.githubusercontent.com/" + currentRepoAddress +  "/" + hash + modifiedFileName;
 	console.log(requestURL);
 
-	httpGetAsync(requestURL, function(resultFile) {
-		console.log(resultFile)
+	httpGetAsync(requestURL, function(resultFile, statusCode) {
+		if (statusCode != 200) {
+			return alert("The file " + currentFileName + " could not be found at this hash in " + currentRepoAddress)
+		}
 		
 		document.getElementById('fileOutput').innerHTML = Prism.highlight(resultFile, Prism.languages.html).replace(/\n/g, "<br/>").replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;");
 

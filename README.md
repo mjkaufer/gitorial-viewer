@@ -11,6 +11,5 @@ This is a very simple system, and does not bother checking if the file you liste
 
 ## TODO
 
-* Add checking if you click on a commit but the file you're looking for is not a part of that commit
-* Better error handling
+* Prettier error handling
 * Loading screens & progress bars
