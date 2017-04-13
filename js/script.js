@@ -1,3 +1,15 @@
+function getParameterByName(name, url) {
+	if (!url) {
+	  url = window.location.href;
+	}
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 function httpGetAsync(theUrl, callback) {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
@@ -9,8 +21,14 @@ function httpGetAsync(theUrl, callback) {
 }
 
 var showGitorialButton = document.getElementById('showGitorial');
-var currentRepoAddress = null;
-var currentFileName = "index.html";
+var currentRepoAddress = getParameterByName('address') || "";
+var currentFileName = getParameterByName('fileName') || "index.html";
+
+
+document.getElementById('address').value = currentRepoAddress;
+
+document.getElementById('fileName').value = currentFileName;
+
 
 showGitorialButton.onclick = function() {
 	currentRepoAddress = document.getElementById('address').value;
