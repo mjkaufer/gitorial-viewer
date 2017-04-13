@@ -83,7 +83,9 @@ function loadFileFromHash(hash) {
 
 	httpGetAsync(requestURL, function(resultFile) {
 		console.log(resultFile)
-		document.getElementById('fileOutput').innerHTML = Prism.highlight(resultFile, Prism.languages.html);
+		
+		document.getElementById('fileOutput').innerHTML = Prism.highlight(resultFile, Prism.languages.html).replace(/\n/g, "<br/>").replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;");
+
 	})
 
 }
